@@ -1,7 +1,7 @@
 require "sinatra"
 require "redis"
 
-set :bind, "0.0.0.0"
+set :bind, "127.0.0.1"
 set :port, 8080
 
 REDIS = Redis.new(
