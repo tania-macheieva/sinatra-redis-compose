@@ -7,7 +7,8 @@ A small Sinatra app that demonstrates Docker Compose with two services. The visi
 - `app` — Sinatra and Puma, available at [http://localhost:8080](http://localhost:8080)
 - `redis` — Redis 7, stores the counter in the `redis-data` Docker volume
 
-Compose starts `app` after Redis passes its health check. Both services are connected to the `appnet` network.
+Compose starts `app` after Redis passes its health check. Both services are connected to the `app-network` network.
+Both services have health checks: Redis is checked with `redis-cli ping`, and the app is checked through `/health`.
 
 ## Project structure
 
@@ -38,6 +39,7 @@ docker compose ps
 curl -i http://localhost:8080
 curl http://localhost:8080/health
 docker compose logs
+docker inspect --format='{{json .State.Health}}' $(docker compose ps -q app)
 docker compose down
 ```
 

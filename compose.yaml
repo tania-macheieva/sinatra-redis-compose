@@ -6,6 +6,12 @@ services:
     environment:
       REDIS_HOST: redis
       REDIS_PORT: "6379"
+    healthcheck:
+      test: ["CMD", "ruby", "-rnet/http", "-ruri", "-e", 'exit(Net::HTTP.get_response(URI("http://127.0.0.1:8080/health")).is_a?(Net::HTTPSuccess) ? 0 : 1)']
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
     depends_on:
       redis:
         condition: service_healthy
