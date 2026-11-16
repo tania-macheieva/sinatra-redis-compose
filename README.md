@@ -17,12 +17,10 @@ Compose starts `app` after Redis passes its health check. Both services are conn
 ├── compose.yaml           # services, network, and volume
 ├── Dockerfile
 ├── Gemfile
-├── public/
-│   └── style.css          # page styles
-├── views/
-│   └── index.erb          # home page
 └── README.md
 ```
+
+The small page and its styles are kept in Sinatra's inline template in `app.rb`.
 
 ## Run
 

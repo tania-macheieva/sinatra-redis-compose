@@ -10,8 +10,6 @@ COPY Gemfile ./
 RUN bundle install
 
 COPY app.rb ./
-COPY views ./views
-COPY public ./public
 
 EXPOSE 8080
 
